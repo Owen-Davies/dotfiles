@@ -26,13 +26,31 @@ echo "Package: *" >> /etc/apt/preferences
 echo "Pin: release a=unstable" >> /etc/apt/preferences
 echo "Pin-Priority: 10" >> /etc/apt/preferences
 
+# Install firefox
 apt-get update
 apt-get install -t unstable firefox
 
+# Install pass for password management
 sudo apt-get install pass -y
 
-sudo apt-get install offlineimap msmtp
+# Install email (offlineimap, msmtp, neomutt)
+sudo apt-get install offlineimap msmtp neomutt
 
+# Install remmina for RDP management
 echo 'deb https://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
 sudo apt update
 sudo apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice
+
+# Install Nextcloud for cloud storage
+apt-get install software-properties-common 
+touch /etc/apt/sources.list.d/nextcloud-client.list
+
+cat "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
+cat "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
+
+apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
+
+sudo apt-get update
+sudo apt install nextcloud-client -y
+
+
