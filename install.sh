@@ -9,6 +9,8 @@ update-alternatives --set editor /usr/bin/vim.basic
 
 sudo apt-get install libxrandr-dev
 
+
+#################################################################
 # Install Visual Studio Code
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
@@ -20,6 +22,7 @@ sudo apt-get install
 sudo apt-get install libasound2 -y
 
 
+#################################################################
 # Install firefox
 echo "deb http://ftp.us.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list
 
@@ -34,17 +37,29 @@ echo "Pin-Priority: 10" >> /etc/apt/preferences
 apt-get update
 apt-get install -t unstable firefox -y 
 
+
+#################################################################
 # Install pass for password management
 sudo apt-get install pass -y
 
+
+#################################################################
 # Install email (neomutt)
 sudo apt-get install neomutt isync msmtp -y
 
+
+#################################################################
 # Install remmina for RDP management
-echo 'deb https://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
+
+# the following line has been replaced by the second line... does it work?
+#echo 'deb https://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
+sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
+
 sudo apt update
 sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice -y
 
+
+#################################################################
 # Install Nextcloud for cloud storage
 apt-get install software-properties-common -y
 touch /etc/apt/sources.list.d/nextcloud-client.list
@@ -57,35 +72,38 @@ apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 sudo apt-get update
 sudo apt install nextcloud-client -y
 
+
+#################################################################
 # Install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+
+#################################################################
 # Create symlinks for config files
 ln -s .vimrc ~/.vimrc
 ln -s .xinitrc ~/.xinitrc
 
 
+#################################################################
 # Install libreoffice
-apt-get install libreoffice -y
+sudo add-apt-repository ppa:libreoffice/ppa
+sudo apt-get update
+sudo apt-get install libreoffice -y
 
 
+#################################################################
 # Install docker
 ## Uninstall old versions
 sudo apt-get remove docker docker-engine docker.io
-
-
 
 ## Install packages to allow apt to use a repository over HTTPS
 sudo apt-get install -y ca-certificates software-properties-common
 
 ## Add dockers office GPG key
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-## Verify you have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88
-sudo apt-key fingerprint 0EBFCD88
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 ## Add repository
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 ## Update
 sudo apt-get update
 
@@ -95,5 +113,22 @@ sudo apt-get install docker-ce -y
 ## Add current user to be able to run docker as that user
 sudo usermod -aG docker $(whoami)
 
+## To apply the new group membership, log out of the server and back in, or type the following:
+su - ${USER}
+
 ## Install docker-compose
 sudo apt-get install docker-compose -y
+
+
+#################################################################
+# Install Azure CLI
+
+## Modify your source list
+AZ_REPO=$(lsb_release -cs)
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+
+## Get the Microsoft signing key
+curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+
+## Install the CLI
+sudo apt-get update && sudo apt-get install azure-cli -y
