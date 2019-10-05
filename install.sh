@@ -136,6 +136,11 @@ sudo apt-get update && sudo apt-get install azure-cli -y
 
 #################################################################
 # Install bm for bookmarks management
+## Clone bm repo
+git clone https://github.com/tj/bm.git ~/source/bm
 
-git clone git@github.com:tj/bm.git ~/source/bm
-sudo ~/source/bm/make install
+## Install bm dependencies
+sudo apt-get install cutycapt xsel -y
+
+cd ~/source/bm/
+sudo make install
