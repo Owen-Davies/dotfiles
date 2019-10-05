@@ -65,6 +65,35 @@ ln -s .vimrc ~/.vimrc
 ln -s .xinitrc ~/.xinitrc
 
 
-
 # Install libreoffice
 apt-get install libreoffice -y
+
+
+# Install docker
+## Uninstall old versions
+sudo apt-get remove docker docker-engine docker.io
+
+
+
+## Install packages to allow apt to use a repository over HTTPS
+sudo apt-get install -y ca-certificates software-properties-common
+
+## Add dockers office GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+## Verify you have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88
+sudo apt-key fingerprint 0EBFCD88
+
+## Add repository
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+## Update
+sudo apt-get update
+
+## Install Docker CE
+sudo apt-get install docker-ce -y
+
+## Add current user to be able to run docker as that user
+sudo usermod -aG docker $(whoami)
+
+## Install docker-compose
+sudo apt-get install docker-compose -y
