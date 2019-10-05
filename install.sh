@@ -143,4 +143,4 @@ git clone https://github.com/tj/bm.git ~/source/bm
 sudo apt-get install cutycapt xsel -y
 
 cd ~/source/bm/
-sudo make install
+sudo make -C ~/source/bm/install
