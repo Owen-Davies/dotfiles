@@ -7,7 +7,7 @@ apt-get install -y libx11-dev libxft-dev libxinerama-dev
 
 update-alternatives --set editor /usr/bin/vim.basic
 
-sudo apt-get install libxrandr-dev
+sudo apt-get install libxrandr-dev -y
 
 
 #################################################################
