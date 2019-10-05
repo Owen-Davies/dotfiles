@@ -1,12 +1,21 @@
+#################################################################
+# Install some basics before we get started
 apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl sudo ranger htop conky
+
+
+#################################################################
+# Add current user to the sudo file
+usermod -a -G sudo ${USER}
+su - ${USER}
+
 
 # set vim as default git editor
 git config --global core.editor "vim"
 
-apt-get install -y libx11-dev libxft-dev libxinerama-dev
-
 update-alternatives --set editor /usr/bin/vim.basic
 
+
+apt-get install -y libx11-dev libxft-dev libxinerama-dev
 sudo apt-get install libxrandr-dev -y
 
 
