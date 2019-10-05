@@ -9,7 +9,7 @@ su - ${USER}
 
 #################################################################
 # Install some basics before we get started
-sudo apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl ranger htop conky
+sudo apt-get update; sudo apt-get install -y vim tmux xinit git build-essential wget curl ranger htop conky
 
 # set vim as default git editor
 git config --global core.editor "vim"
@@ -29,7 +29,7 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microso
 
 sudo apt-get install apt-transport-https -y
 sudo apt-get update
-sudo apt-get install 
+sudo apt-get install code
 sudo apt-get install libasound2 -y
 
 
