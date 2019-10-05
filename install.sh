@@ -73,8 +73,8 @@ sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin
 sudo apt-get install software-properties-common -y
 sudo touch /etc/apt/sources.list.d/nextcloud-client.list
 
-echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/nextcloud-client.list
-echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
 
 sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 
