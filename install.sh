@@ -2,6 +2,7 @@
 # Install Sudo
 su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}"
 
+export DEBIAN_FRONTEND=noninteractive
 
 #################################################################
 # Install some basics before we get started
