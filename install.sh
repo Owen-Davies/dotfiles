@@ -217,5 +217,6 @@ sudo apt install virtualbox-6.0 -y
 #################################################################
 # Install golang
 #wget https://dl.google.com/go/go1.13.1.src.tar.gz
+# https://tecadmin.net/install-go-on-debian/
 
 
