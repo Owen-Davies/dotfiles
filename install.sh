@@ -86,7 +86,7 @@ ln -s .xinitrc ~/.xinitrc
 
 #################################################################
 # Install libreoffice
-sudo add-apt-repository ppa:libreoffice/ppa
+sudo add-apt-repository ppa:libreoffice/ppa -y
 sudo apt-get update
 sudo apt-get install libreoffice -y
 
@@ -103,7 +103,7 @@ sudo apt-get install -y ca-certificates software-properties-common
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 ## Add repository
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" -y
 ## Update
 sudo apt-get update
 
@@ -188,3 +188,10 @@ sudo apt-get install bc xclip -y
 ## Get repository
 git clone https://github.com/sumnerevans/menu-calc ~/sourc/menu-calc
 sudo make -C ~/source/bm/ install
+
+
+#################################################################
+# Install xrdp
+sudo apt-get install xrdp -y
+systemctl restart xrdp
+
