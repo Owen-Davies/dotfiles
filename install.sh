@@ -3,6 +3,7 @@
 su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}; . ~/source/dotfiles/install.sh"
 
 echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections
+export DEBIAN_FRONTEND=noninteractive
 
 #################################################################
 # Install some basics before we get started
