@@ -1,8 +1,9 @@
 #################################################################
 # Install Sudo
-su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}"
+su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}; . ~/source/dotfiles/install.sh"
 
 echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections
+export DEBIAN_FRONTEND=noninteractive
 
 #################################################################
 # Install some basics before we get started
@@ -72,8 +73,8 @@ sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin
 sudo apt-get install software-properties-common -y
 sudo touch /etc/apt/sources.list.d/nextcloud-client.list
 
-echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/nextcloud-client.list
-echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
 
 sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 
@@ -88,8 +89,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 #################################################################
 # Create symlinks for config files
-ln -s .vimrc ~/.vimrc
-ln -s .xinitrc ~/.xinitrc
+ln -s ~/source/dotfiles/.vimrc ~/.vimrc
+ln -s ~/source/dotfiles/.xinitrc ~/.xinitrc
 
 
 #################################################################
@@ -203,4 +204,19 @@ sudo make -C ~/source/bm/ install
 # Install xrdp
 sudo apt-get install xrdp -y
 systemctl restart xrdp
+
+
+#################################################################
+# Install Virtualbox
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian buster contrib" -y
+sudo apt update
+sudo apt install virtualbox-6.0 -y
+
+#################################################################
+# Install golang
+#wget https://dl.google.com/go/go1.13.1.src.tar.gz
+# https://tecadmin.net/install-go-on-debian/
+
 
