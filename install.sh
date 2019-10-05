@@ -1,6 +1,6 @@
 #################################################################
 # Install Sudo
-su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}"
+su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}; . ~/source/dotfiles/install.sh"
 
 echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections
 
