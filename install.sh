@@ -54,6 +54,10 @@ apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 sudo apt-get update
 sudo apt install nextcloud-client -y
 
-# Install
+# Install Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+# Create symlinks for config files
+ln -s .vimrc ~/.vimrc
+ln -s .xinitrc ~/.xinitrc
 
