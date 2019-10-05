@@ -132,3 +132,10 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 
 ## Install the CLI
 sudo apt-get update && sudo apt-get install azure-cli -y
+
+
+#################################################################
+# Install bm for bookmarks management
+
+git clone git@github.com:tj/bm.git ~/source/bm
+sudo ~/source/bm/make install
