@@ -40,7 +40,7 @@ sudo apt-get install neomutt isync msmtp -y
 # Install remmina for RDP management
 echo 'deb https://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
 sudo apt update
-sudo apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice
+sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice -y
 
 # Install Nextcloud for cloud storage
 apt-get install software-properties-common -y
