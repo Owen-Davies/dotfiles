@@ -3,7 +3,7 @@
 su -c "apt-get install -y sudo"
 
 ## Add current user to the sudo file
-su -c "usermod -a -G sudo ${USER}"
+su -c "/usr/sbin/usermod -a -G sudo ${USER}"
 su - ${USER}
 
 
