@@ -1,10 +1,10 @@
 #################################################################
 # Install Sudo
-su -c "apt-get install -y sudo"
+su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - {USER}"
 
 ## Add current user to the sudo file
-su -c "/usr/sbin/usermod -a -G sudo ${USER}"
-su - ${USER}
+#su -c "/usr/sbin/usermod -a -G sudo ${USER}"
+#su - ${USER}
 
 
 #################################################################
@@ -14,7 +14,7 @@ sudo apt-get update; sudo apt-get install -y vim tmux xinit git build-essential 
 # set vim as default git editor
 git config --global core.editor "vim"
 
-update-alternatives --set editor /usr/bin/vim.basic
+sudo update-alternatives --set editor /usr/bin/vim.basic
 
 
 sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev
@@ -64,7 +64,7 @@ sudo apt-get install neomutt isync msmtp -y
 
 # the following line has been replaced by the second line... does it work?
 #echo 'deb https://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
-sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
+sudo apt-add-repository ppa:remmina-ppa-team/remmina-next -y
 
 sudo apt update
 sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice -y
