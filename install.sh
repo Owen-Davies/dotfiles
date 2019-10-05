@@ -9,7 +9,7 @@ su - ${USER}
 
 #################################################################
 # Install some basics before we get started
-apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl ranger htop conky
+sudo apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl ranger htop conky
 
 # set vim as default git editor
 git config --global core.editor "vim"
@@ -17,7 +17,7 @@ git config --global core.editor "vim"
 update-alternatives --set editor /usr/bin/vim.basic
 
 
-apt-get install -y libx11-dev libxft-dev libxinerama-dev
+sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev
 sudo apt-get install libxrandr-dev -y
 
 
@@ -45,8 +45,8 @@ echo "Package: *" >> /etc/apt/preferences
 echo "Pin: release a=unstable" >> /etc/apt/preferences
 echo "Pin-Priority: 10" >> /etc/apt/preferences
 
-apt-get update
-apt-get install -t unstable firefox -y 
+sudo apt-get update
+sudo apt-get install -t unstable firefox -y 
 
 
 #################################################################
@@ -78,7 +78,7 @@ touch /etc/apt/sources.list.d/nextcloud-client.list
 echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
 echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
 
-apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
+sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 
 sudo apt-get update
 sudo apt install nextcloud-client -y
