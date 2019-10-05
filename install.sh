@@ -153,19 +153,28 @@ sudo make -C ~/source/bm/ install
 
 #################################################################
 # Install dwm
-
+git clone https://github.com/owen-davies/dwm ~/source/dwm
+sudo make -C ~/source/dwm/ install
 
 #################################################################
 # Install st
+git clone https://github.com/owen-davies/st ~/source/st
+sudo make -C ~/source/st/ install
 
 #################################################################
 # Install dmenu
+git clone https://github.com/owen-davies/dmenu ~/source/dmenu
+sudo make -C ~/source/dmenu/ install
 
 #################################################################
 # Install slstatus
+git clone https://git.suckless.org/slstatus/ ~/source/slstatus
+sudo make -C ~/source/slstatus/ install
 
 #################################################################
 # Install slock
+git clone https://git.suckless.org/slock/ ~/source/slock
+sudo make -C ~/source/slock/ install
 
 #################################################################
 # Install menu-calc
