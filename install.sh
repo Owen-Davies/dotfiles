@@ -9,7 +9,7 @@ su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - {USER
 
 #################################################################
 # Install some basics before we get started
-sudo apt-get update; sudo apt-get install -y vim tmux xinit git build-essential wget curl ranger htop conky
+sudo apt-get update; sudo apt-get install -y vim tmux xinit git build-essential wget curl ranger htop conky gnupg2
 
 # set vim as default git editor
 git config --global core.editor "vim"
@@ -104,8 +104,6 @@ sudo apt-get install libreoffice -y
 
 #################################################################
 # Install docker
-## Uninstall old versions
-sudo apt-get remove docker docker-engine docker.io
 
 ## Install packages to allow apt to use a repository over HTTPS
 sudo apt-get install -y ca-certificates software-properties-common
@@ -115,6 +113,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 ## Add repository
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" -y
+
 ## Update
 sudo apt-get update
 
