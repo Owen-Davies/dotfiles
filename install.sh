@@ -176,6 +176,9 @@ sudo make -C ~/source/slstatus/ install
 git clone https://git.suckless.org/slock/ ~/source/slock
 sudo make -C ~/source/slock/ install
 
+## Install xautolock
+sudo apt-get install xautolock -y
+
 #################################################################
 # Install menu-calc
 
