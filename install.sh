@@ -124,7 +124,7 @@ sudo apt-get install docker-ce -y
 sudo usermod -aG docker $(whoami)
 
 ## To apply the new group membership, log out of the server and back in, or type the following:
-su - ${USER}
+#su - ${USER}
 
 ## Install docker-compose
 sudo apt-get install docker-compose -y
