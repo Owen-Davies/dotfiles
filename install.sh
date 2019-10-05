@@ -1,10 +1,6 @@
 #################################################################
 # Install Sudo
-su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - {USER}"
-
-## Add current user to the sudo file
-#su -c "/usr/sbin/usermod -a -G sudo ${USER}"
-#su - ${USER}
+su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}"
 
 
 #################################################################
@@ -29,7 +25,7 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microso
 
 sudo apt-get install apt-transport-https -y
 sudo apt-get update
-sudo apt-get install code
+sudo apt-get install code -y
 sudo apt-get install libasound2 -y
 
 
