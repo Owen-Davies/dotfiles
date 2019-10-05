@@ -46,8 +46,8 @@ sudo apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-
 apt-get install software-properties-common -y
 touch /etc/apt/sources.list.d/nextcloud-client.list
 
-cat "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
-cat "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
 
 apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 
