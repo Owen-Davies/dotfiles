@@ -1,13 +1,15 @@
 #################################################################
-# Install some basics before we get started
-apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl sudo ranger htop conky
+# Install Sudo
+su -c "apt-get install -y sudo"
 
-
-#################################################################
-# Add current user to the sudo file
+## Add current user to the sudo file
 su -c "usermod -a -G sudo ${USER}"
 su - ${USER}
 
+
+#################################################################
+# Install some basics before we get started
+apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl ranger htop conky
 
 # set vim as default git editor
 git config --global core.editor "vim"
