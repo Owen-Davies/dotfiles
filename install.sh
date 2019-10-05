@@ -2,7 +2,7 @@
 # Install Sudo
 su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}"
 
-export DEBIAN_FRONTEND=noninteractive
+echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections
 
 #################################################################
 # Install some basics before we get started
