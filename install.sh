@@ -5,7 +5,7 @@ apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl 
 
 #################################################################
 # Add current user to the sudo file
-usermod -a -G sudo ${USER}
+su -c "usermod -a -G sudo ${USER}"
 su - ${USER}
 
 
