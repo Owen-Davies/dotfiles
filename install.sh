@@ -135,6 +135,11 @@ sudo apt-get update && sudo apt-get install azure-cli -y
 
 
 #################################################################
+# Install todo.txt
+git clone https://github.com/todotxt/todo.txt-cli ~/source/todo.txt-cli
+sudo make -C ~/source/todo.txt-cli/ install
+
+#################################################################
 # Install bm for bookmarks management
 ## Clone bm repo
 git clone https://github.com/tj/bm.git ~/source/bm
@@ -143,9 +148,24 @@ git clone https://github.com/tj/bm.git ~/source/bm
 sudo apt-get install cutycapt xsel -y
 
 cd ~/source/bm/
-sudo make -C ~/source/bm/install
+sudo make -C ~/source/bm/ install
 
 
+#################################################################
+# Install dwm
+
+
+#################################################################
+# Install st
+
+#################################################################
+# Install dmenu
+
+#################################################################
+# Install slstatus
+
+#################################################################
+# Install slock
 
 #################################################################
 # Install menu-calc
@@ -155,4 +175,4 @@ sudo apt-get install bc xclip -y
 
 ## Get repository
 git clone https://github.com/sumnerevans/menu-calc ~/sourc/menu-calc
-sudo make -C ~/source/bm/install
+sudo make -C ~/source/bm/ install
