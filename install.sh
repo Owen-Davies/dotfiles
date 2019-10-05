@@ -1,4 +1,7 @@
-apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl sudo
+apt-get update; apt-get install -y vim tmux xinit git build-essential wget curl sudo ranger htop conky
+
+# set vim as default git editor
+git config --global core.editor "vim"
 
 apt-get install -y libx11-dev libxft-dev libxinerama-dev
 
@@ -61,3 +64,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ln -s .vimrc ~/.vimrc
 ln -s .xinitrc ~/.xinitrc
 
+
+
+# Install libreoffice
+apt-get install libreoffice -y
