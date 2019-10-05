@@ -34,13 +34,13 @@ sudo apt-get install libasound2 -y
 # Install firefox
 echo "deb http://ftp.us.debian.org/debian/ unstable main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
-echo "Package: *" | tee -a /etc/apt/preferences
-echo "Pin: release a=stable" | tee -a /etc/apt/preferences
-echo "Pin-Priority: 900" | tee -a /etc/apt/preferences
-echo "" | tee -a /etc/apt/preferences
-echo "Package: *" | tee -a /etc/apt/preferences
-echo "Pin: release a=unstable" | tee -a /etc/apt/preferences
-echo "Pin-Priority: 10" | tee -a /etc/apt/preferences
+echo "Package: *" | sudo tee -a /etc/apt/preferences
+echo "Pin: release a=stable" | sudo tee -a /etc/apt/preferences
+echo "Pin-Priority: 900" | sudo tee -a /etc/apt/preferences
+echo "" | sudo tee -a /etc/apt/preferences
+echo "Package: *" | sudo tee -a /etc/apt/preferences
+echo "Pin: release a=unstable" | sudo tee -a /etc/apt/preferences
+echo "Pin-Priority: 10" | sudo tee -a /etc/apt/preferences
 
 sudo apt-get update
 sudo apt-get install -t unstable firefox -y 
