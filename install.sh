@@ -31,15 +31,15 @@ sudo apt-get install libasound2 -y
 
 #################################################################
 # Install firefox
-echo "deb http://ftp.us.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list
+echo "deb http://ftp.us.debian.org/debian/ unstable main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
-echo "Package: *" >> /etc/apt/preferences
-echo "Pin: release a=stable" >> /etc/apt/preferences
-echo "Pin-Priority: 900" >> /etc/apt/preferences
-echo "" >> /etc/apt/preferences
-echo "Package: *" >> /etc/apt/preferences
-echo "Pin: release a=unstable" >> /etc/apt/preferences
-echo "Pin-Priority: 10" >> /etc/apt/preferences
+echo "Package: *" | tee -a /etc/apt/preferences
+echo "Pin: release a=stable" | tee -a /etc/apt/preferences
+echo "Pin-Priority: 900" | tee -a /etc/apt/preferences
+echo "" | tee -a /etc/apt/preferences
+echo "Package: *" | tee -a /etc/apt/preferences
+echo "Pin: release a=unstable" | tee -a /etc/apt/preferences
+echo "Pin-Priority: 10" | tee -a /etc/apt/preferences
 
 sudo apt-get update
 sudo apt-get install -t unstable firefox -y 
@@ -71,8 +71,8 @@ sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin
 sudo apt-get install software-properties-common -y
 sudo touch /etc/apt/sources.list.d/nextcloud-client.list
 
-echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" > /etc/apt/sources.list.d/nextcloud-client.list
-echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" > /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/nextcloud-client.list
 
 sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 
