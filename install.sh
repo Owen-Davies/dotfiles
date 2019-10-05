@@ -210,7 +210,12 @@ systemctl restart xrdp
 # Install Virtualbox
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-
 sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian buster contrib" -y
 sudo apt update
 sudo apt install virtualbox-6.0 -y
+
+#################################################################
+# Install golang
+#wget https://dl.google.com/go/go1.13.1.src.tar.gz
+
+
