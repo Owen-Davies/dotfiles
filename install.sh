@@ -151,7 +151,7 @@ sudo make -C ~/source/bm/install
 # Install menu-calc
 
 ## Install dependencies
-sudo apt-get install bc xclilp -y
+sudo apt-get install bc xclip -y
 
 ## Get repository
 git clone https://github.com/sumnerevans/menu-calc ~/sourc/menu-calc
