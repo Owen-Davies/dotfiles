@@ -68,11 +68,11 @@ sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin
 
 #################################################################
 # Install Nextcloud for cloud storage
-apt-get install software-properties-common -y
-touch /etc/apt/sources.list.d/nextcloud-client.list
+sudo apt-get install software-properties-common -y
+sudo touch /etc/apt/sources.list.d/nextcloud-client.list
 
-echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
-echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu zesty main" > /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" > /etc/apt/sources.list.d/nextcloud-client.list
+echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" > /etc/apt/sources.list.d/nextcloud-client.list
 
 sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
 
@@ -164,13 +164,15 @@ sudo make -C ~/source/dwm/ install
 
 #################################################################
 # Install st
-#git clone https://github.com/owen-davies/st ~/source/st
-#sudo make -C ~/source/st/ install
+#git clone https://github.com/owen-davies/
+git clone https://git.suckless.org/st ~/source/st
+sudo make -C ~/source/st/ install
 
 #################################################################
 # Install dmenu
-#git clone https://github.com/owen-davies/dmenu ~/source/dmenu
-#sudo make -C ~/source/dmenu/ install
+#git clone https://github.com/owen-davies/
+git clone https://git.suckless.org/dmenu ~/source/dmenu
+sudo make -C ~/source/dmenu/ install
 
 #################################################################
 # Install slstatus
@@ -192,7 +194,7 @@ sudo apt-get install xautolock -y
 sudo apt-get install bc xclip -y
 
 ## Get repository
-git clone https://github.com/sumnerevans/menu-calc ~/sourc/menu-calc
+git clone https://github.com/sumnerevans/menu-calc ~/source/menu-calc
 sudo make -C ~/source/bm/ install
 
 
