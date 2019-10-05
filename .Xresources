@@ -1,0 +1,39 @@
+!------------
+! Xft config
+!------------
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+!--------------
+! Color Scheme
+!--------------
+#include ".colors/gruvbox"
+
+!-----------
+! st config
+!-----------
+
+st*font: crisp:size=12:antialias=true:autohint=true
+st*fontalt0: siji:size=12:antialias=true:autohint=true
+st*fontalt1: RobotoMono Nerd Font:size=12:antialias=true:autohint=true
+st*alpha: 1
+
+!--------------
+! xterm config
+!--------------
+
+xterm*faceName: Iosevka Nerd Font:antialias=true:autohint=true
+xterm*faceSize: 12
+xterm*internalBorder: 10
+xterm*vt100*geometry: 70x20
+xterm*saveLines: 16384
+xterm*loginShell: true
+xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*termName: xterm-256color
+xterm*eightBitInput: false

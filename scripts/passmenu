@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+shopt -s nullglob globstar failglob
+set -euo pipefail
+
+tool=${1:-} 
+typeit=0
+if [[ $tool == "--type" ]]; then
+  typeit=1
+  shift
+fi
+
+X_SELECTION="${PASSWORD_STORE_X_SELECTION:-clipboard}"
+CLIP_TIME="${PASSWORD_STORE_CLIP_TIME:-45}"
+prefix="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+
+password_files=( "$prefix"/**/*.gpg )
+password_files=( "${password_files[@]#"$prefix"/}" )
+password_files=( "${password_files[@]%.gpg}" )
+password=''
+cleanup=''
+before=''
+userID=$(id -u "$(whoami)")
+
+_finish () {
+  [[ True == $cleanup ]] &&
+  printf "$before" | base64 -d | xclip -sel "$X_SELECTION" -i
+  [[ True = "$cleanup" ]] &&
+  if compgen -G "/tmp/passmenu.1000*" >/dev/null 2>&1 ;then
+    rmdir /tmp/passmenu.*.*."$$".lock >/dev/null 2>&1
+  fi
+  exit
+}
+
+## dmenu exits on KeyPress not KeyRelease.
+# It might be nice to send KeyRelease event to some dummy window.
+# psydocode: xdotool getwindowfocus; create dummy window;
+# exec dmenu; close dummy window; restore focus.
+for password in $(printf '%s\n' "${password_files[@]}" | dmenu -f "$@"); do
+  passel+=("$password")
+done
+
+[[ -n $password ]] || exit
+
+trap _finish EXIT
+
+## Clearing old filelock(s). 
+umask 077
+stalelock=( "${stalelock:-''}" )
+stalelock=( "$(find '/tmp' -maxdepth 1 -name "passmenu."$userID".*" -user $(whoami) -print0  -quit -type d)" ) &&
+if test -n "$stalelock" ;then
+  stalename=${stalelock%.*}
+  report=( "$(ps -u $(id -u $(whoami)) aux | grep "bash" | 
+  grep "passmenu" | grep -v "$$")" )
+  stalePID=( "$(printf $stalename | 
+  sed -e "s/\/tmp\/passmenu\.[0-9]\{1,6\}\?\..*\.//g")" )
+  if [[ "$report" == *"$stalePID"* ]] ;then
+    kill "$stalePID" || exit 1
+  else
+    rmdir /tmp/passmenu."$userID".* >/dev/null 2>&1 ||
+    { echo ":: Unable to clear old filelock"; exit 1; }
+  fi
+fi
+
+## Adding a new filelock
+( mktemp -d "/tmp/passmenu."$userID".XXXXXXXXXX"."$$".lock >/dev/null 2>&1 && cleanup=True ||
+  { echo >&2 ":: Unable to make a filelock."; exit 1; } )
+
+cleanup=True
+# It would be nice to first first test if string exists.
+before="$(xclip -sel "$X_SELECTION" -o 2>/dev/null | base64)" || true
+
+if [[ $typeit -eq 0 ]]; then
+  if [ ${#passel[@]} -gt "1" ]; then
+    round=0
+    for entry in "${passel[@]}"; do
+      printf '%s\n' "Sending "${passel[$round]}" via "$X_SELECTION""
+      pass show "$entry" | sed '1!d' | tr -d '\n' |
+      xclip -l 1 -quiet -sel "$X_SELECTION" >/dev/null 2>&1
+      round=`expr $round + 1`
+    done
+  else
+    printf '%s\n' "Sending "$password" via "$X_SELECTION""
+    pass show "$password" | sed '1!d' | tr -d '\n' |
+    xclip -sel "$X_SELECTION" -i && sleep "$CLIP_TIME" 
+  fi
+else
+  command -v xdotool >/dev/null 2>&1 || 
+  { echo >&2 "e: cannot find xdotool."; exit 1; }
+  if [ ${#passel[@]} -gt "1" ]; then
+    round=0
+    for entry in "${passel[@]}"; do
+      printf '%s\n' "Sending "${passel[$round]}" via "$X_SELECTION""
+      printf '' | xclip -l 1 -quiet -sel "$X_SELECTION" >/dev/null 2>&1
+      pass show "$entry" | sed '1!d' | tr -d '\n' | 
+      xdotool type --clearmodifiers --file -
+      round=`expr $round + 1`
+    done
+  else
+    pass show "$password" | sed '1!d' | tr -d '\n' |
+    xdotool type --clearmodifiers --file -
+  fi
+fi
+exit

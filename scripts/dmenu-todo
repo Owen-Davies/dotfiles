@@ -1,0 +1,7 @@
+# List all tasks
+
+# If task selected ask:
+# A. Done?
+# B. Start Pomodoro timer
+# C. Add tag
+# D. Delete task

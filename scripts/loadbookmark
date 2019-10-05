@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cat ~/bookmarks | dmenu -p 'Load Bookmark' -i -b -l 10 -w $1 | awk '{print $1}'
