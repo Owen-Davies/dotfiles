@@ -144,3 +144,15 @@ sudo apt-get install cutycapt xsel -y
 
 cd ~/source/bm/
 sudo make -C ~/source/bm/install
+
+
+
+#################################################################
+# Install menu-calc
+
+## Install dependencies
+sudo apt-get install bc xclilp -y
+
+## Get repository
+git clone https://github.com/sumnerevans/menu-calc ~/sourc/menu-calc
+sudo make -C ~/source/bm/install
