@@ -220,3 +220,7 @@ sudo apt install virtualbox-6.0 -y
 # https://tecadmin.net/install-go-on-debian/
 
 
+#################################################################
+# Install Music player MPD et al
+sudo apt-get install mpd mpc ncmpcpp
+
