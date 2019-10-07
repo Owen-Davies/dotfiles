@@ -230,3 +230,13 @@ sudo alsactl init
 # Install Music player MPD et al
 sudo apt-get install mpd mpc ncmpcpp
 
+
+#################################################################
+# Install NTFS driver for accessing windows drives
+sudo apt-get install ntfs-3g
+
+# To mount:
+# mount –t ntfs-3g /dev/sdc1 /media/windows
+
+# To unmount:
+# umount /media/windows
