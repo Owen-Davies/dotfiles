@@ -221,6 +221,12 @@ sudo apt install virtualbox-6.0 -y
 
 
 #################################################################
+# Install Pulseaudio & also
+sudo apt-get install pulseaudio libasound2-plugins libavresample4 libasound2 alsamixergui
+sudo alsactl init
+
+
+#################################################################
 # Install Music player MPD et al
 sudo apt-get install mpd mpc ncmpcpp
 
