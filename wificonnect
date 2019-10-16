@@ -1,0 +1,1 @@
+/usr/sbin/wpa_supplicant -B -i wlx0013efb00a9d -c <(wpa_passphrase "SSID_NAME" password_here ) && /usr/sbin/dhclient wlx0013efb00a9d
