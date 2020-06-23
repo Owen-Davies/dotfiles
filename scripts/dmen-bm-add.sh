@@ -9,4 +9,5 @@ url="$(result "URL:")"
 title="$(result "Title:")"
 tags="$(result "Tags (comma delimited):")"
 
-bm -a  $url -T "$title" -t "$tags"
+bm -b '/home/owen/Nextcloud/bookmarks/bm.lnk' -a  $url -T "$title" -t "$tags"
+

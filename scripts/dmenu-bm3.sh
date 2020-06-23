@@ -6,14 +6,14 @@
 	do
 		bookmark="$title "-" "$url" "-" "$tags"";
 		bmarray["$bookmark"]="$url";
-	done < /home/owen/bm.lnk 
+	done < /home/owen/Nextcloud/bookmarks/bm.lnk 
 
 function load() {
 	while IFS=\| read -r guid date id url title tags;
 	do
 		bookmark="$title "-" "$url" "-" "$tags"";
 		printf "$bookmark\n";
-	done < /home/owen/bm.lnk 
+	done < /home/owen/Nextcloud/bookmarks/bm.lnk 
 	printf "Add\n";
 
 }
