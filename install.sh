@@ -1,9 +1,9 @@
 #################################################################
 # Install Sudo
-su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}; . ~/source/dotfiles/install.sh"
+#su -c "apt-get install -y sudo; /usr/sbin/usermod -a -G sudo ${USER}; su - ${USER}; . ~/source/dotfiles/install.sh"
 
 echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections
-export DEBIAN_FRONTEND=noninteractive
+# export DEBIAN_FRONTEND=noninteractive
 
 #################################################################
 # Install some basics before we get started
@@ -14,7 +14,9 @@ git config --global core.editor "vim"
 
 sudo update-alternatives --set editor /usr/bin/vim.basic
 
-
+###########################################
+# Only needed if don't have x installed?  #
+###########################################
 sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev
 sudo apt-get install libxrandr-dev -y
 
@@ -33,18 +35,19 @@ sudo apt-get install libasound2 -y
 
 #################################################################
 # Install firefox
-echo "deb http://ftp.us.debian.org/debian/ unstable main contrib non-free" | sudo tee -a /etc/apt/sources.list
+# Debian
+#echo "deb http://ftp.us.debian.org/debian/ unstable main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
-echo "Package: *" | sudo tee -a /etc/apt/preferences
-echo "Pin: release a=stable" | sudo tee -a /etc/apt/preferences
-echo "Pin-Priority: 900" | sudo tee -a /etc/apt/preferences
-echo "" | sudo tee -a /etc/apt/preferences
-echo "Package: *" | sudo tee -a /etc/apt/preferences
-echo "Pin: release a=unstable" | sudo tee -a /etc/apt/preferences
-echo "Pin-Priority: 10" | sudo tee -a /etc/apt/preferences
-
-sudo apt-get update
-sudo apt-get install -t unstable firefox -y 
+#echo "Package: *" | sudo tee -a /etc/apt/preferences
+#echo "Pin: release a=stable" | sudo tee -a /etc/apt/preferences
+#echo "Pin-Priority: 900" | sudo tee -a /etc/apt/preferences
+#echo "" | sudo tee -a /etc/apt/preferences
+#echo "Package: *" | sudo tee -a /etc/apt/preferences
+#echo "Pin: release a=unstable" | sudo tee -a /etc/apt/preferences
+#echo "Pin-Priority: 10" | sudo tee -a /etc/apt/preferences
+#
+#sudo apt-get update
+#sudo apt-get install -t unstable firefox -y 
 
 
 #################################################################
@@ -70,17 +73,17 @@ sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin
 
 #################################################################
 # Install Nextcloud for cloud storage
-sudo apt-get install software-properties-common -y
-sudo touch /etc/apt/sources.list.d/nextcloud-client.list
-
-echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
-echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
-
-sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
-
-sudo apt-get update
-sudo apt install nextcloud-client -y
-
+#sudo apt-get install software-properties-common -y
+#sudo touch /etc/apt/sources.list.d/nextcloud-client.list
+#
+#echo "deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
+#echo "deb-src http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/nextcloud-client.list
+#
+#sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com AD3DD469
+#
+#sudo apt-get update
+#sudo apt install nextcloud-client -y
+#
 
 #################################################################
 # Install Vundle
@@ -91,6 +94,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Create symlinks for config files
 ln -s ~/source/dotfiles/.vimrc ~/.vimrc
 ln -s ~/source/dotfiles/.xinitrc ~/.xinitrc
+
+# Can I symlink all files in a folder to ~/ ??
 
 
 #################################################################
@@ -202,17 +207,21 @@ sudo make -C ~/source/bm/ install
 
 #################################################################
 # Install xrdp
-sudo apt-get install xrdp -y
-systemctl restart xrdp
+#sudo apt-get install xrdp -y
+#systemctl restart xrdp
 
 
 #################################################################
 # Install Virtualbox
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian buster contrib" -y
-sudo apt update
-sudo apt install virtualbox-6.0 -y
+#wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+#wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+#sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian buster contrib" -y
+#sudo apt update
+#sudo apt install virtualbox-6.0 -y
+
+######################################################
+# Install KVM
+######################################################
 
 #################################################################
 # Install golang
@@ -221,11 +230,9 @@ sudo apt install virtualbox-6.0 -y
 
 
 #################################################################
-# Install Pulseaudio & also
+# Install Pulseaudio & alsa
 sudo apt-get install pulseaudio libasound2-plugins libavresample4 libasound2 alsamixergui
 sudo alsactl init
-
-
 #################################################################
 # Install Music player MPD et al
 sudo apt-get install mpd mpc ncmpcpp
@@ -240,3 +247,21 @@ sudo apt-get install ntfs-3g
 
 # To unmount:
 # umount /media/windows
+
+
+################################################################
+# Create symlink to onedrive
+###############################################################
+
+ln -s /home/owen/onedrive/coreazure/data /home/owen
+mv /home/owen/data /home/owen/onedrive-ca
+
+ln -s /home/owen/onedrive/personal/data /home/owen
+mv /home/owen/data /home/owen/onedrive-personal
+
+
+##############################################################
+# Create symlink for xinitrc
+##############################################################
+
+
