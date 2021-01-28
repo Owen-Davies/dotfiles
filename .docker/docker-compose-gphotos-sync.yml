@@ -1,0 +1,9 @@
+version: '2'
+services:
+  gphotos-sync:
+    image: gilesknap/gphotos-sync
+    restart: unless-stopped
+    volumes:
+      - ~/Pictures:/storage
+      - ~/.config/gphotos-sync:/config
+    command: ['/storage']

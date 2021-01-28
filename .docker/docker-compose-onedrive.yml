@@ -1,0 +1,14 @@
+version: '2'
+services:
+  onedrive:
+    image: driveone/onedrive
+    restart: unless-stopped
+    volumes:
+      - ~/onedrive/personal/data:/onedrive/data
+      - ~/onedrive/personal/conf:/onedrive/conf
+  onedrive-ca:
+    image: driveone/onedrive
+    restart: unless-stopped
+    volumes:
+      - ~/onedrive/work/data:/onedrive/data
+      - ~/onedrive/work/conf:/onedrive/conf

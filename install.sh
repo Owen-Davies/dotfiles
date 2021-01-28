@@ -14,12 +14,6 @@ git config --global core.editor "vim"
 
 sudo update-alternatives --set editor /usr/bin/vim.basic
 
-###########################################
-# Only needed if don't have x installed?  #
-###########################################
-sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev
-sudo apt-get install libxrandr-dev -y
-
 
 #################################################################
 # Install Visual Studio Code
@@ -90,16 +84,11 @@ sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 
-#################################################################
-# Create symlinks for config files
-ln -s ~/source/dotfiles/.vimrc ~/.vimrc
-ln -s ~/source/dotfiles/.xinitrc ~/.xinitrc
-
-# Can I symlink all files in a folder to ~/ ??
 
 
 #################################################################
 # Install libreoffice
+#################################################################
 sudo add-apt-repository ppa:libreoffice/ppa -y
 sudo apt-get update
 sudo apt-get install libreoffice -y
@@ -107,6 +96,7 @@ sudo apt-get install libreoffice -y
 
 #################################################################
 # Install docker
+#################################################################
 
 ## Install packages to allow apt to use a repository over HTTPS
 sudo apt-get install -y ca-certificates software-properties-common
@@ -132,7 +122,6 @@ sudo usermod -aG docker $(whoami)
 ## Install docker-compose
 sudo apt-get install docker-compose -y
 
-
 #################################################################
 # Install Azure CLI
 
@@ -149,11 +138,14 @@ sudo apt-get update && sudo apt-get install azure-cli -y
 
 #################################################################
 # Install todo.txt
+#################################################################
 git clone https://github.com/todotxt/todo.txt-cli ~/source/todo.txt-cli
 sudo make -C ~/source/todo.txt-cli/ install
 
 #################################################################
 # Install bm for bookmarks management
+#################################################################
+
 ## Clone bm repo
 git clone https://github.com/tj/bm.git ~/source/bm
 
@@ -166,11 +158,22 @@ sudo make -C ~/source/bm/ install
 
 #################################################################
 # Install dwm
+#################################################################
+
+#################
+# Prerequisits  #
+#################
+sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev
+sudo apt-get install libxrandr-dev -y
+
+
 git clone https://github.com/owen-davies/dwm ~/source/dwm
 sudo make -C ~/source/dwm/ install
 
 #################################################################
 # Install st
+#################################################################
+
 #git clone https://github.com/owen-davies/
 git clone https://git.suckless.org/st ~/source/st
 sudo make -C ~/source/st/ install
@@ -188,6 +191,9 @@ sudo make -C ~/source/slstatus/ install
 
 #################################################################
 # Install slock
+
+sudo apt-get install libxrandr-dev -y
+
 git clone https://git.suckless.org/slock/ ~/source/slock
 sudo make -C ~/source/slock/ install
 
@@ -223,6 +229,16 @@ sudo make -C ~/source/bm/ install
 # Install KVM
 ######################################################
 
+
+
+######################################################
+# Install Cryptomator
+######################################################
+sudo add-apt-repository ppa:sebastian-stenzel/cryptomator
+
+sudo apt-get update
+sudo apt-get install cryptomator -y
+
 #################################################################
 # Install golang
 #wget https://dl.google.com/go/go1.13.1.src.tar.gz
@@ -248,6 +264,21 @@ sudo apt-get install ntfs-3g
 # To unmount:
 # umount /media/windows
 
+#################################################################
+# Create symlink to home ~/                                   
+#################################################################
+ln -s ~/dev/dotfiles/* ~/
+
+ln -s ~/dev/dotfiles/.fonts ~/.fonts
+
+
+# symlink individual file:
+# ln -s ~/source/dotfiles/.xinitrc ~/.xinitrc
+
+#################################################################
+# Symlink .local/bin to ~/.local/bin
+#################################################################
+ln -s ~/dev/dotfiles/.local/bin/* ~/.local/bin/
 
 ################################################################
 # Create symlink to onedrive
@@ -264,4 +295,10 @@ mv /home/owen/data /home/owen/onedrive-personal
 # Create symlink for xinitrc
 ##############################################################
 
+##############################################################
+# .local/share/remmina - Symlink remmina files to a dotfiles-private repo? 
+##############################################################
 
+##############################################################
+# For SSH, the known hosts are stored in ~/.ssh/known_hosts symlink them too?
+##############################################################
